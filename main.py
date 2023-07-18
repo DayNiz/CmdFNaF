@@ -10,7 +10,6 @@ os.system('mode con: cols=50 lines=5')
 # e : right light      #
 # q : look left        #
 # d : look right       #
-# s : monitor          #
 # z : reset door&light #
 #   FOR CAMERA         #
 # y : back stage       #
