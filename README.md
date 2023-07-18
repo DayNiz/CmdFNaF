@@ -7,7 +7,6 @@ a : left light;
 e : right light;
 q : look left;
 d : look right;
-s : monitor;
 z : reset door&light;
 FOR THE CAMERAS
 y : back stage;
