@@ -1,8 +1,10 @@
-from Office import Office
-from Animatronics import Bonnie, Chica
-from Camera import Camera
+from src.Office import Office
+from src.Animatronics import Bonnie, Chica
+from src.Camera import Camera
 import os
 import keyboard
+from pygame import mixer
+from src.office_state import art_6am
 
 
 # Fonction pour effacer l'écran
@@ -16,7 +18,7 @@ def clear_screen():
 class Game:
     def __init__(self):
         self.view_side: int = 1  # [left = 0, center = 1, right = 2]
-        self.clock: int = 0  # 0 = 12AM
+        self.clock: int = 5  # 0 = 12AM
         self.comsum: int = 0
         self.office: Office = Office(self.view_side)
         self.running: bool = True
@@ -28,15 +30,17 @@ class Game:
 
         self.monitor.get_animatronics_position()
 
+        self.end_night_sound = mixer.Sound("src/sounds/6AM.wav")
+
     def check_comsum(self):
         self.comsum = 0
         if not self.office.left.door.is_open:
             self.comsum += 1
         if not self.office.right.door.is_open:
             self.comsum += 1
-        if self.office.left.light.state in ["on", "bonnie", "chica"]:
+        if self.office.left.light.isOn:
             self.comsum += 1
-        if self.office.right.light.state in ["on", "bonnie", "chica"]:
+        if self.office.right.light.isOn:
             self.comsum += 1
         # éviter la surconsommation / sous-consommation
         if self.comsum > 4:
@@ -53,8 +57,8 @@ class Game:
     def run(self):
         self.office.show(self.clock, self.comsum)
         while self.running:
-            self.check_comsum()
             self.check_input()
+            self.check_comsum()
             if self.bonnie.is_on_office() or self.chica.is_on_office():
                 self.running = False
                 break
@@ -123,5 +127,6 @@ class Game:
         """
         function called when it's 6AM
         """
-        print("CONGRATULATION OF MAKING IT 'TIL 6AM§")
+        self.end_night_sound.play()
+        print(art_6am)
         self.running = False

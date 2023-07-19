@@ -1,4 +1,5 @@
-from office_state import *
+from src.office_state import *
+from pygame import mixer
 
 
 class Side:
@@ -14,6 +15,8 @@ class Door:
     def __init__(self):
         self.is_open: bool = True
         self.art: str = door_art[self.is_open]
+        self.closing_sound = mixer.Sound("src/sounds/CloseDoor.wav")
+        self.opening_sound = mixer.Sound("src/sounds/OpenDoor.wav")
 
     def toggle(self):
         if self.is_open:
@@ -23,40 +26,44 @@ class Door:
 
     def closing(self):
         self.is_open = False
+        self.closing_sound.play()
         # update display
         self.art: str = door_art[self.is_open]
 
     def opening(self):
         self.is_open = True
+        self.opening_sound.play()
         # update display
         self.art: str = door_art[self.is_open]
 
 
 class Light:
     def __init__(self):
-        self.state: str = "off"
+        self.isOn: bool = False
         self.anim_name: str = ""
-        self.art: str = light_art[self.state]
+        self.art: str = light_art["off"]
 
     def toggle(self):
-        if self.state == "off":
-            self.turn_on()
-        elif self.state == "on":
+        if self.isOn:
             self.turn_off()
+        else:
+            self.turn_on()
 
     def show_anim(self, anim_name):
         self.anim_name = anim_name
         self.art = light_art[self.anim_name]
 
     def turn_off(self):
-        self.state = "off"
+        self.isOn = False
         # update display
-        self.art = light_art[self.state]
+        self.art = light_art["off"]
 
     def turn_on(self):
-        self.state = "on"
+        self.isOn = True
         # update display
-        self.art = light_art[self.state]
+        self.art = light_art["on"]
+        if self.anim_name != "":
+            self.art = light_art[self.anim_name]
 
 
 class Office:

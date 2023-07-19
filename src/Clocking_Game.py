@@ -1,7 +1,9 @@
 import threading
 import time
-from Game import Game
+from src.Game import Game
 import os
+from pygame import mixer
+mixer.init()
 
 
 class Clocking:
@@ -11,12 +13,19 @@ class Clocking:
 
     def __init__(self):
         self.game = Game()
-        self.game.bonnie.level = int(input("A quel niveau mets-tu l'IA de BONNIE? (0 à 20)"))
+        try:
+            self.game.bonnie.level = int(input("A quel niveau mets-tu l'IA de BONNIE? (0 à 20) - def=0 -->"))
+        except ValueError:
+            self.game.bonnie.level = 0
+
         if self.game.bonnie.level > 20:
             self.game.bonnie.level = 20
         if self.game.bonnie.level < 0:
             self.game.bonnie.level = 0
-        self.game.chica.level = int(input("A quel niveau mets-tu l'IA de CHICA? (0 à 20)"))
+        try:
+            self.game.chica.level = int(input("A quel niveau mets-tu l'IA de CHICA? (0 à 20) - def=0 -->"))
+        except ValueError:
+            self.game.chica.level = 0
         if self.game.chica.level > 20:
             self.game.chica.level = 20
         if self.game.chica.level < 0:
@@ -25,6 +34,7 @@ class Clocking:
         self.clockThread = ClockThread(self.game)
         self.bonnieThread = AnimatronicThread(self.game.bonnie)
         self.chicaThread = AnimatronicThread(self.game.chica)
+        self.soundThread = SoundThread(self.game)
 
     def run(self):
         os.system('mode con: cols=25 lines=16')
@@ -32,10 +42,11 @@ class Clocking:
         self.clockThread.start()
         self.bonnieThread.start()
         self.chicaThread.start()
+        self.soundThread.start()
 
 
 class ClockThread(threading.Thread):
-    def __init__(self, game: Game):
+    def __init__(self, game):
         threading.Thread.__init__(self)
         self.game: Game = game
         self.hour: int = self.game.clock
@@ -44,6 +55,7 @@ class ClockThread(threading.Thread):
         while self.game.running:
             if self.hour == 6:
                 self.game.running = False
+                time.sleep(0.5)
                 self.game.six_am()
             else:
                 time.sleep(60)
@@ -52,7 +64,7 @@ class ClockThread(threading.Thread):
 
 
 class GameThread(threading.Thread):
-    def __init__(self, game: Game):
+    def __init__(self, game):
         threading.Thread.__init__(self)
         self.game = game
 
@@ -67,3 +79,17 @@ class AnimatronicThread(threading.Thread):
 
     def run(self):
         self.animatronic.run()
+
+
+class SoundThread(threading.Thread):
+    def __init__(self, game):
+        threading.Thread.__init__(self)
+        self.game = game
+        self.music = mixer.music
+        self.music.load("src/sounds/Vent.wav")
+
+    def run(self):
+        while self.game.running:
+            self.music.play()
+        self.music.stop()
+
