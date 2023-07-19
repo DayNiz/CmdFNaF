@@ -18,7 +18,7 @@ def clear_screen():
 class Game:
     def __init__(self):
         self.view_side: int = 1  # [left = 0, center = 1, right = 2]
-        self.clock: int = 5  # 0 = 12AM
+        self.clock: int = 0  # 0 = 12AM
         self.comsum: int = 0
         self.office: Office = Office(self.view_side)
         self.running: bool = True
