@@ -1,23 +1,25 @@
 import time
 from random import randint
 from pygame import mixer
+from src.office_state import art_jump_bonnie, art_jump_chica
 
 
 class Animatronics:
     def __init__(self, game, level=0):
-        self.name = None
+        self.name: str = ""
         self.game = game
         self.map = self.game.monitor
-        self.path = [None]
+        self.path: list = [None]
         self.path_pos = 0
         self.pos = self.path[self.path_pos]
         self.level: int = level
         self.movement_opportunity: int = 0
         self.just_arrive_at_office: bool = True
+        self.jump_art: str = ""
 
-        self.scream_sound = mixer.Sound("src/sounds/Scream.wav")
-        self.knock_sound = mixer.Sound("src/sounds/KnockingDoor.wav")
-        self.light_sound = mixer.Sound("src/sounds/SeeLight.wav")
+        self.scream_sound = mixer.Sound("src/Scream.wav")
+        self.knock_sound = mixer.Sound("src/KnockingDoor.wav")
+        self.light_sound = mixer.Sound("src/SeeLight.wav")
 
     def check_movement_opportunity(self):
         self.movement_opportunity = randint(1, 20)
@@ -66,7 +68,10 @@ class Animatronics:
         if self.game.running:
             self.scream_sound.play()
         self.game.running = False
+        self.game.running = False
+        self.game.clear_screen()
         print(f"{self.name} KILLED YOU")
+        print(self.jump_art)
 
     def run(self):
         while self.game.running:
@@ -84,6 +89,7 @@ class Bonnie(Animatronics):
         Animatronics.__init__(self, game, level)
         self.name = "bonnie"
         self.pos = "Show Stage"
+        self.jump_art = art_jump_bonnie
 
         self.path = ("Show Stage", "BackStage", "Show Stage",
                      "Left Hall", "office light_left", "office")
@@ -94,6 +100,7 @@ class Chica(Animatronics):
         Animatronics.__init__(self, game, level)
         self.name = "chica"
         self.pos = "Show Stage"
+        self.jump_art = art_jump_chica
 
         self.path = ("Show Stage", "Dining Area", "Show Stage", "Dining Area",
                      "Right Hall", "office light_right", "office")
