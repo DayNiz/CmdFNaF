@@ -1,3 +1,6 @@
+from pygame import mixer
+
+
 class Camera:
     def __init__(self, game):
         """
@@ -21,6 +24,7 @@ class Camera:
                               "h": "dining_area", "y": "backstage", "u": "main_stage"}
 
         self.current_camera: str = "Show Stage"
+        self.changing_sound = mixer.Sound("src/Camera.wav")
 
     def get_animatronics_position(self):
         self.position_chica = self.game.chica.pos
@@ -41,6 +45,7 @@ class Camera:
             # none are visible
 
     def show(self):
+        self.changing_sound.play()
         self.get_animatronics_position()
         if self.current_camera == "Show Stage":
             print(self.all_cam_art.main_stage_art[self.animatronics_on_camera])
