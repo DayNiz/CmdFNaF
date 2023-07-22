@@ -7,14 +7,6 @@ from pygame import mixer
 from src.office_state import art_6am
 
 
-# Fonction pour effacer l'écran
-def clear_screen():
-    if os.name == "nt":
-        os.system("cls")
-    else:
-        os.system("clear")
-
-
 class Game:
     def __init__(self):
         self.view_side: int = 1  # [left = 0, center = 1, right = 2]
@@ -31,6 +23,14 @@ class Game:
         self.monitor.get_animatronics_position()
 
         self.end_night_sound = mixer.Sound("src/sounds/6AM.wav")
+
+    
+    # Fonction pour effacer l'écran
+    def clear_screen(self):
+        if os.name == "nt":
+            os.system("cls")
+        else:
+            os.system("clear")
 
     def check_comsum(self):
         self.comsum = 0
@@ -68,7 +68,7 @@ class Game:
         checking_input = checking_keyboard.name
         try:
             if checking_keyboard.event_type == 'down':
-                clear_screen()
+                self.clear_screen()
                 if checking_input == "u":
                     self.monitor.current_camera = "Show Stage"
                     self.monitor.show()
@@ -121,12 +121,14 @@ class Game:
 
     def add_one_hour(self):
         self.clock += 1
+        self.clear_screen()
         self.office.show(self.clock, self.comsum)
 
     def six_am(self):
         """
         function called when it's 6AM
         """
+        self.clear_screen()
         self.end_night_sound.play()
         print(art_6am)
         self.running = False
