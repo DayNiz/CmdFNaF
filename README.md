@@ -29,7 +29,11 @@ b : left hall;
 n : right hall;
 
 s : show the office,in the state you have left it
+---
 
 --WARNING--
 
 If you mant to compile it yourself, make sure the executable is with a folder named src with the sounds (the .wav files).
+
+---
+FNaF made by Scott Cawthon. I just remade the game in ASCII art.
