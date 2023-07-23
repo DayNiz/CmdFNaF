@@ -15,8 +15,8 @@ class Door:
     def __init__(self):
         self.is_open: bool = True
         self.art: str = door_art[self.is_open]
-        self.closing_sound = mixer.Sound("src/sounds/CloseDoor.wav")
-        self.opening_sound = mixer.Sound("src/sounds/OpenDoor.wav")
+        self.closing_sound = mixer.Sound("src/CloseDoor.wav")
+        self.opening_sound = mixer.Sound("src/OpenDoor.wav")
 
     def toggle(self):
         if self.is_open:
@@ -67,7 +67,8 @@ class Light:
 
 
 class Office:
-    def __init__(self, side):
+    def __init__(self, side, game):
+        self.game = game
         self.side = side
         self.left: Side = Side()
         self.right: Side = Side()
@@ -76,6 +77,6 @@ class Office:
         if self.side == 0:
             self.left.show()
         elif self.side == 1:
-            print(comsum_art[comsum], clock_art[clock], OFFICE_art, sep="")
+            print(comsum_art[comsum], show_battery(round(self.game.batt_level)), clock_art[clock], OFFICE_art, sep="")
         elif self.side == 2:
             self.right.show()

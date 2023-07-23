@@ -35,14 +35,16 @@ class Clocking:
         self.bonnieThread = AnimatronicThread(self.game.bonnie)
         self.chicaThread = AnimatronicThread(self.game.chica)
         self.soundThread = SoundThread(self.game)
+        self.batteryThread = BatteryThread(self.game)
 
     def run(self):
-        os.system('mode con: cols=25 lines=16')
+        os.system('mode con: cols=25 lines=17')
         self.gameThread.start()
         self.clockThread.start()
         self.bonnieThread.start()
         self.chicaThread.start()
         self.soundThread.start()
+        self.batteryThread.run()
 
 
 class ClockThread(threading.Thread):
@@ -86,10 +88,24 @@ class SoundThread(threading.Thread):
         threading.Thread.__init__(self)
         self.game = game
         self.music = mixer.music
-        self.music.load("src/sounds/Vent.wav")
+        self.music.load("src/Vent.wav")
 
     def run(self):
         while self.game.running:
             self.music.play()
         self.music.stop()
 
+
+class BatteryThread(threading.Thread):
+    def __init__(self, game):
+        threading.Thread.__init__(self)
+        self.game = game
+        self.lost_per_bar_per_sec = 0.25  # la quantité de batterie perdue en 1sec par 1barre
+
+    def run(self):
+        while self.game.running:
+            time.sleep(2.75)
+            self.game.batt_level -= self.game.comsum * (0.5)
+            if self.game.office.side == 1 and not self.game.monitor.isOn:
+                self.game.clear_screen()
+                self.game.office.show(self.game.clock, self.game.comsum)

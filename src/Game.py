@@ -12,7 +12,8 @@ class Game:
         self.view_side: int = 1  # [left = 0, center = 1, right = 2]
         self.clock: int = 0  # 0 = 12AM
         self.comsum: int = 0
-        self.office: Office = Office(self.view_side)
+        self.batt_level: float = 100.0
+        self.office: Office = Office(self.view_side, self)
         self.running: bool = True
         self.monitor = Camera(self)
         self.bonnie = Bonnie(self, level=0)
@@ -22,9 +23,8 @@ class Game:
 
         self.monitor.get_animatronics_position()
 
-        self.end_night_sound = mixer.Sound("src/sounds/6AM.wav")
+        self.end_night_sound = mixer.Sound("src/6AM.wav")
 
-    
     # Fonction pour effacer l'écran
     def clear_screen(self):
         if os.name == "nt":
@@ -59,6 +59,9 @@ class Game:
         while self.running:
             self.check_input()
             self.check_comsum()
+            if self.office.side == 1 and not self.monitor.isOn:
+                self.clear_screen()
+                self.office.show(self.clock, self.comsum)
             if self.bonnie.is_on_office() or self.chica.is_on_office():
                 self.running = False
                 break
@@ -67,36 +70,45 @@ class Game:
         checking_keyboard = keyboard.read_event()
         checking_input = checking_keyboard.name
         try:
-            if checking_keyboard.event_type == 'down':
+            if checking_keyboard.event_type == 'down' and self.batt_level > 0:
                 self.clear_screen()
                 if checking_input == "u":
                     self.monitor.current_camera = "Show Stage"
                     self.monitor.show()
+                    self.monitor.isOn = True
                 elif checking_input == "y":
                     self.monitor.current_camera = "BackStage"
                     self.monitor.show()
+                    self.monitor.isOn = True
                 elif checking_input == "h":
                     self.monitor.current_camera = "Dining Area"
                     self.monitor.show()
+                    self.monitor.isOn = True
                 elif checking_input == "b":
                     self.monitor.current_camera = "Left Hall"
                     self.monitor.show()
+                    self.monitor.isOn = True
                 elif checking_input == "n":
                     self.monitor.current_camera = "Right Hall"
                     self.monitor.show()
+                    self.monitor.isOn = True
+
                 elif checking_input == "s":
                     self.office.show(self.clock, self.comsum)
-
+                    self.monitor.isOn = False
                 elif checking_input == "q":
                     self.office.side -= 1
                     if self.office.side < 0:
                         self.office.side = 0
                     self.office.show(self.clock, self.comsum)
+                    self.monitor.isOn = False
                 elif checking_input == "d":
                     self.office.side += 1
                     if self.office.side > 2:
                         self.office.side = 2
                     self.office.show(self.clock, self.comsum)
+                    self.monitor.isOn = False
+
                 elif checking_input == "a":
                     self.office.left.light.toggle()
                     self.office.show(self.clock, self.comsum)
@@ -109,8 +121,6 @@ class Game:
                 elif checking_input == "c":
                     self.office.right.door.toggle()
                     self.office.show(self.clock, self.comsum)
-                elif checking_input == "quit":
-                    self.running = False
                 elif checking_input == "z":
                     self.turn_all_off()
                     self.office.show(self.clock, self.comsum)
@@ -128,7 +138,6 @@ class Game:
         """
         function called when it's 6AM
         """
-        self.clear_screen()
         self.end_night_sound.play()
         print(art_6am)
         self.running = False

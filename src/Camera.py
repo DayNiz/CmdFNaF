@@ -25,6 +25,7 @@ class Camera:
 
         self.current_camera: str = "Show Stage"
         self.changing_sound = mixer.Sound("src/Camera.wav")
+        self.isOn = False
 
     def get_animatronics_position(self):
         self.position_chica = self.game.chica.pos

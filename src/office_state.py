@@ -98,6 +98,13 @@ door_art = ["..1111111..\n\
             ]
 
 # CENTER SIDE
+
+
+def show_battery(battery_left):
+    return f".......{battery_left}%.......\n"
+    # .......99.25%.......
+
+
 comsum_art = [".......[    ].......\n",
               ".......[|   ].......\n",
               ".......[||  ].......\n",
