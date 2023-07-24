@@ -29,6 +29,7 @@ b : left hall;
 n : right hall;
 
 s : show the office,in the state you have left it
+
 ---
 
 --WARNING--
