@@ -1,7 +1,7 @@
 import time
 from random import randint
 from pygame import mixer
-from src.office_state import art_jump_bonnie, art_jump_chica
+from src.office_state import art_jump_bonnie, art_jump_chica, art_jump_foxy
 
 
 class Animatronics:
@@ -16,6 +16,9 @@ class Animatronics:
         self.movement_opportunity: int = 0
         self.just_arrive_at_office: bool = True
         self.jump_art: str = ""
+        self.wait_time_min = 1.5
+        self.wait_time_max = 10
+        self.moving_speed = self.wait_time_max - (self.wait_time_max - self.wait_time_min) * (self.level - 1) / 19.0
 
         self.scream_sound = mixer.Sound("src/Scream.wav")
         self.knock_sound = mixer.Sound("src/KnockingDoor.wav")
@@ -70,12 +73,13 @@ class Animatronics:
         self.game.running = False
         self.game.running = False
         self.game.clear_screen()
-        print(f"{self.name} KILLED YOU")
+        print(self.jump_art)
+        time.sleep(0.5)
         print(self.jump_art)
 
     def run(self):
         while self.game.running:
-            time.sleep(4.5)
+            time.sleep(self.moving_speed)
             if self.check_movement_opportunity():
                 self.move()
             else:
@@ -104,3 +108,32 @@ class Chica(Animatronics):
 
         self.path = ("Show Stage", "Dining Area", "Show Stage", "Dining Area",
                      "Right Hall", "office light_right", "office")
+
+
+class Foxy(Animatronics):
+    def __init__(self, game, level: int):
+        Animatronics.__init__(self, game, level)
+        # le niveau de sortie de Foxy
+        # 0 : dedans --> 4 : sorti
+        self.stage_out = 0
+        self.name = "foxy"
+        self.jump_art = art_jump_foxy
+
+    def run(self):
+        while self.game.running:
+            time.sleep(self.moving_speed)
+            if self.check_movement_opportunity() and self.game.monitor.isOn:
+                # il se déplace
+                self.stage_out += 1
+
+                if self.stage_out == 3:
+                    # si il est parti
+                    time.sleep(2)
+                    if self.game.office.left.door.is_open:
+                        self.jumpscare()
+                    else:
+                        self.knock_sound.play()
+                        self.stage_out = 0
+
+            else:
+                pass

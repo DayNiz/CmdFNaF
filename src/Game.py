@@ -1,5 +1,5 @@
 from src.Office import Office
-from src.Animatronics import Bonnie, Chica
+from src.Animatronics import Bonnie, Chica, Foxy
 from src.Camera import Camera
 import os
 import keyboard
@@ -18,6 +18,7 @@ class Game:
         self.monitor = Camera(self)
         self.bonnie = Bonnie(self, level=0)
         self.chica = Chica(self, level=0)
+        self.foxy = Foxy(self, level=0)
 
         self.is_keyboard_pressed = False
 
@@ -70,62 +71,102 @@ class Game:
         checking_keyboard = keyboard.read_event()
         checking_input = checking_keyboard.name
         try:
-            if checking_keyboard.event_type == 'down' and self.batt_level > 0:
+            if checking_keyboard.event_type == 'down' and self.batt_level > 0 and self.running:
                 self.clear_screen()
                 if checking_input == "u":
-                    self.monitor.current_camera = "Show Stage"
-                    self.monitor.show()
-                    self.monitor.isOn = True
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "Show Stage"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
                 elif checking_input == "y":
-                    self.monitor.current_camera = "BackStage"
-                    self.monitor.show()
-                    self.monitor.isOn = True
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "BackStage"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
                 elif checking_input == "h":
-                    self.monitor.current_camera = "Dining Area"
-                    self.monitor.show()
-                    self.monitor.isOn = True
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "Dining Area"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
                 elif checking_input == "b":
-                    self.monitor.current_camera = "Left Hall"
-                    self.monitor.show()
-                    self.monitor.isOn = True
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "Left Hall"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
                 elif checking_input == "n":
-                    self.monitor.current_camera = "Right Hall"
-                    self.monitor.show()
-                    self.monitor.isOn = True
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "Right Hall"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
+                elif checking_input == "g":
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "Pirate's Cove"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
 
                 elif checking_input == "s":
-                    self.office.show(self.clock, self.comsum)
-                    self.monitor.isOn = False
+                    self.monitor.isOn = not self.monitor.isOn
+                    if self.monitor.isOn:
+                        self.monitor.show()
+                    else:
+                        self.office.side = 1
+                        self.office.show(self.clock, self.comsum)
                 elif checking_input == "q":
                     self.office.side -= 1
                     if self.office.side < 0:
-                        self.office.side = 0
-                    self.office.show(self.clock, self.comsum)
-                    self.monitor.isOn = False
+                        self.office.side = 1
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
+                    else:
+                        self.monitor.show()
                 elif checking_input == "d":
                     self.office.side += 1
                     if self.office.side > 2:
-                        self.office.side = 2
-                    self.office.show(self.clock, self.comsum)
-                    self.monitor.isOn = False
+                        self.office.side = 1
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
+                    else:
+                        self.monitor.show()
 
                 elif checking_input == "a":
                     self.office.left.light.toggle()
-                    self.office.show(self.clock, self.comsum)
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
+                    else:
+                        self.monitor.show()
                 elif checking_input == "e":
                     self.office.right.light.toggle()
-                    self.office.show(self.clock, self.comsum)
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
+                    else:
+                        self.monitor.show()
                 elif checking_input == "w":
                     self.office.left.door.toggle()
-                    self.office.show(self.clock, self.comsum)
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
+                    else:
+                        self.monitor.show()
                 elif checking_input == "c":
                     self.office.right.door.toggle()
-                    self.office.show(self.clock, self.comsum)
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
+                    else:
+                        self.monitor.show()
                 elif checking_input == "z":
                     self.turn_all_off()
-                    self.office.show(self.clock, self.comsum)
+                    if not self.monitor.isOn:
+                        self.office.show(self.clock, self.comsum)
                 else:
-                    pass
+                    if self.monitor.isOn:
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
         except KeyboardInterrupt:
             self.running = False
 

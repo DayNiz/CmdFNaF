@@ -4,9 +4,10 @@ from pygame import mixer
 class Camera:
     def __init__(self, game):
         """
-         5 rooms viewable on the cams
+         6 rooms viewable on the cams
          "b" "Left Hall"
          "n" "Right Hall"
+         "g" "Pirate's Cove
          "h" "Dining Area"
          "y" "BackStage"
          "u" "MainStage"
@@ -20,7 +21,7 @@ class Camera:
         self.animatronics_on_camera = 0
         self.art: str = self.all_cam_art.main_stage_art[self.animatronics_on_camera]
 
-        self.all_cam: dict = {"o": "office", "b": "left_hall", "n": "right_hall",
+        self.all_cam: dict = {"o": "office", "b": "left_hall", "n": "right_hall", "g": "pirate_cove",
                               "h": "dining_area", "y": "backstage", "u": "main_stage"}
 
         self.current_camera: str = "Show Stage"
@@ -48,6 +49,7 @@ class Camera:
     def show(self):
         self.changing_sound.play()
         self.get_animatronics_position()
+        self.game.clear_screen()
         if self.current_camera == "Show Stage":
             print(self.all_cam_art.main_stage_art[self.animatronics_on_camera])
         elif self.current_camera == "BackStage":
@@ -58,6 +60,8 @@ class Camera:
             print(self.all_cam_art.left_hall_art[self.animatronics_on_camera])
         elif self.current_camera == "Right Hall":
             print(self.all_cam_art.right_hall_art[self.animatronics_on_camera])
+        elif self.current_camera == "Pirate's Cove":
+            print(self.all_cam_art.pirate_cove_art[self.game.foxy.stage_out])
 
 
 class MainStage(Camera):
@@ -90,10 +94,16 @@ class LeftHall(Camera):
         self.art = self.all_cam_art.left_hall_art
 
 
+class PirateCove(Camera):
+    def __init__(self, game):
+        super().__init__(game)
+        self.art = self.all_cam_art.pirate_cove_art
+
+
 class CameraArt:
     def __init__(self):
         self.main_stage_art = {"BC": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~~~~~[H]~~~~\n\
+~~MAIN~~~[G]~[H]~~~~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~*~~~~~~~~~~~~~*~~~\n\
 ~***~~~~~~~~~~~***~~\n\
@@ -106,7 +116,7 @@ class CameraArt:
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~~~~~~~~~~~~~~~~~~~~",
                                "B": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~~~~~[H]~~~~\n\
+~~MAIN~~[G]~[H]~~~~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~*~~~~~~~~~~~~~*~~~\n\
 ~***~~~~~~~~~~~***~~\n\
@@ -119,7 +129,7 @@ class CameraArt:
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~~~~~~~~~~~~~~~~~~~~",
                                "C": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~~~~~[H]~~~~\n\
+~~MAIN~~~[G]~[H]~~~~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~*~~~~~~~~~~~~~*~~~\n\
 ~***~~~~~~~~~~~***~~\n\
@@ -132,7 +142,7 @@ class CameraArt:
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~~~~~~~~~~~~~~~~~~~~",
                                0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~~~~~[H]~~~~\n\
+~~MAIN~~~[G]~[H]~~~~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~*~~~~~~~~~~~~~*~~~\n\
 ~***~~~~~~~~~~~***~~\n\
@@ -146,7 +156,7 @@ class CameraArt:
 ~~~~~~~~~~~~~~~~~~~~"}
 
         self.backstage_art = {"B": "~~~~~~~~~~~~[Y][U]~~\n\
-~~BACK~~~~~~~[H]~~~~\n\
+~~BACK~~~[G]~[H]~~~~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~.__.~~~~~~~~~~~~~~~\n\
@@ -159,7 +169,7 @@ _|  |_~~~~~~~~~~~~~~\n\
 ____________________\n\
 --------------------",
                               0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~BACK~~~~~~~[H]~~~~\n\
+~~BACK~~~[G]~[H]~~~~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~.__.~~~~~~~~~~~~~~~\n\
@@ -172,8 +182,8 @@ _|  |_~~~~~~~~~~~~~~\n\
 ____________________\n\
 --------------------"}
 
-        self.dining_area_art = {"C": "~~~~~~~~~~~[7]~~[9]~\n\
-~DINING~~~~[4]~~[6]~\n\
+        self.dining_area_art = {"C": "~~~~~~~~~~~~[Y][U]~~\n\
+~DINING~~~[G]~[H]~~~~\n\
 ~AREA~~~~~~[B]{}[N]~\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~~ _44_ ~~~~~~~~~~~~\n\
@@ -186,7 +196,7 @@ ____________________\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
         ~~~~~~~~~~~~~~~~~~~~",
                                 0: "~~~~~~~~~~~[7]~~[9]~\n\
-~DINING~~~~[4]~~[6]~\n\
+~DINING~~~[G]~[H]~~~~\n\
 ~AREA~~~~~~[B]{}[N]~\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
@@ -199,8 +209,62 @@ ____________________\n\
 ~~~~~~~~~~~~~~~~~~~~\n\
 ~~~~~~~~~~~~~~~~~~~~"}
 
+        self.pirate_cove_art = {0: "~~~~~~~~~~~~[Y][U]~~\n\
+~PIRATE~~~[G]~[H]~~~\n\
+~~COVE~~~~~[B]{}[N]~\n\
+~~~~~~~~~~~~~~~~~~~~\n\
+~{{{{{{{{~~}}}}}}}}}\n\
+{{{{{{{{{~~}}}}}}}}}\n\
+{{{{{{{{{~~}}}}}}}}}\n\
+{{{{{{{{{~~}}}}}}}}}\n\
+{{{{{{{{{~~}}}}}}}}}\n\
+{{{{{{{{{~~}}}}}}}}}\n\
+{{{{{{{{{~~}}}}}}}}}\n\
+~{{{{{{{{~~}}}}}}}}}\n\
+~~{{{{{{{~~}}}}}}}}}",
+                                1: "~~~~~~~~~~~~[Y][U]~~\n\
+~PIRATE~~~[G]~[H]~~~\n\
+~~COVE~~~~~[B]{}[N]~\n\
+~~~~~~~~~~~~~~~~~~~~\n\
+~{{{{{{~~~~~~}}}}}}}\n\
+{{{{{{{~~~~~~}}}}}}}\n\
+{{{{{{{\\__/\\~}}}}}}}\n\
+{{{{{{{°  °|~}}}}}}}\n\
+{{{{{{{    |~}}}}}}}\n\
+{{{{{{{; ;/~~}}}}}}}\n\
+{{{{{{{\\_/~~~}}}}}}}\n\
+~{{{{{{~~~~~~}}}}}}}\n\
+~~{{{{{~~~~~~}}}}}}}",
+                                2: "~~~~~~~~~~~~[Y][U]~~\n\
+~PIRATE~~~[G]~[H]~~~\n\
+~~COVE~~~~~[B]{}[N]~\n\
+~~~~~~~~~~~~~~~~~~~~\n\
+~{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{^ ^~~~~~~~~~~}}}}}\n\
+{{° °~~~~~~~~~~}}}}}\n\
+{{\\/{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+",
+                                3: "~~~~~~~~~~~~[Y][U]~~\n\
+~PIRATE~~~[G]~[H]~~~\n\
+~~COVE~~~~~[B]{}[N]~\n\
+~~~~~~~~~~~~~~~~~~~~\n\
+~{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+{{{{{~~~~~~~~~~}}}}}\n\
+~{{{{~~~~~~~~~~}}}}}\n\
+~~{{{~~~~~~~~~~}}}}}"}
+
         self.left_hall_art = {"B": "~~~~~~~~~~~~[Y][U]~~\n\
-~~LEFT~~~~~~~[H]~~~~\n\
+~~LEFT~~~[G]~[H]~~~~\n\
 ~~HALL~~~~~[B]{}[N]~\n\
 |/~  3     3  ~~~~/|\n\
 ||~ 333   333 ~~~~||\n\
@@ -213,7 +277,7 @@ ____________________\n\
 ||~~~.-----.~~~~~~\\\\\n\
 ||\\~~~~~~~~~~~~~~~~\\",
                               0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~LEFT~~~~~~~[H]~~~~\n\
+~~LEFT~~~[G]~[H]~~~~\n\
 ~~HALL~~~~~[B]{}[N]~\n\
 |/~~~~~~~~~~~~~~~~/|\n\
 ||~~~~~~~~~~~~~~~~||\n\
@@ -227,7 +291,7 @@ ____________________\n\
 ||\\~~~~~~~~~~~~~~~~\\"}
 
         self.right_hall_art = {"C": "~~~~~~~~~~~~[Y][U]~~\n\
-~~RIGHT~~~~~~[H]~~~~\n\
+~~RIGHT~~[G]~[H]~~~~\n\
 ~~HALL~~~~~[B]{}[N]~\n\
 |\\~~~~~~~~~~~~~~~~\\|\n\
 ||~~ /\\_/_\\_/\\ ~~~||\n\
@@ -240,7 +304,7 @@ ____________________\n\
 //~~~~~~~~~~~~~~~~||\n\
 /~~~~~~~~~~~~~~~~/||",
                                0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~RIGHT~~~~~~[H]~~~~\n\
+~~RIGHT~~[G]~[H]~~~~\n\
 ~~HALL~~~~~[B]{}[N]~\n\
 |\\~~~~~~~~~~~~~~~~\\|\n\
 ||~~~~~~~~~~~~~~~~||\n\

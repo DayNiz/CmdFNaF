@@ -13,8 +13,10 @@ class Clocking:
 
     def __init__(self):
         self.game = Game()
+
         try:
-            self.game.bonnie.level = int(input("A quel niveau mets-tu l'IA de BONNIE? (0 à 20) - def=0 -->"))
+            print()
+            self.game.bonnie.level = int(input("A quel niveau mets-tu l'IA de BONNIE? (0 à 20) - def 0 -->"))
         except ValueError:
             self.game.bonnie.level = 0
 
@@ -23,17 +25,29 @@ class Clocking:
         if self.game.bonnie.level < 0:
             self.game.bonnie.level = 0
         try:
-            self.game.chica.level = int(input("A quel niveau mets-tu l'IA de CHICA? (0 à 20) - def=0 -->"))
+            self.game.chica.level = int(input("A quel niveau mets-tu l'IA de CHICA? (0 à 20) - def 0 -->"))
         except ValueError:
             self.game.chica.level = 0
         if self.game.chica.level > 20:
             self.game.chica.level = 20
         if self.game.chica.level < 0:
             self.game.chica.level = 0
+
+        try:
+            self.game.foxy.level = int(input("A quel niveau mets-tu l'IA de FOXY? (0 à 20) - def 0 -->"))
+        except ValueError:
+            self.game.foxy.level = 0
+
+        if self.game.foxy.level > 20:
+            self.game.foxy.level = 20
+        if self.game.foxy.level < 0:
+            self.game.foxy.level = 0
+
         self.gameThread = GameThread(self.game)
         self.clockThread = ClockThread(self.game)
         self.bonnieThread = AnimatronicThread(self.game.bonnie)
         self.chicaThread = AnimatronicThread(self.game.chica)
+        self.foxyThread = AnimatronicThread(self.game.foxy)
         self.soundThread = SoundThread(self.game)
         self.batteryThread = BatteryThread(self.game)
 
@@ -43,6 +57,7 @@ class Clocking:
         self.clockThread.start()
         self.bonnieThread.start()
         self.chicaThread.start()
+        self.foxyThread.start()
         self.soundThread.start()
         self.batteryThread.run()
 
@@ -58,6 +73,7 @@ class ClockThread(threading.Thread):
             if self.hour == 6:
                 self.game.running = False
                 time.sleep(0.5)
+                self.game.running = False
                 self.game.six_am()
             else:
                 time.sleep(60)
@@ -100,12 +116,11 @@ class BatteryThread(threading.Thread):
     def __init__(self, game):
         threading.Thread.__init__(self)
         self.game = game
-        self.lost_per_bar_per_sec = 0.25  # la quantité de batterie perdue en 1sec par 1barre
 
     def run(self):
         while self.game.running:
             time.sleep(2.75)
-            self.game.batt_level -= self.game.comsum * (0.5)
-            if self.game.office.side == 1 and not self.game.monitor.isOn:
+            self.game.batt_level -= self.game.comsum * 0.5
+            if self.game.office.side == 1 and not self.game.monitor.isOn and self.game.running:
                 self.game.clear_screen()
                 self.game.office.show(self.game.clock, self.game.comsum)
