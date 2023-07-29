@@ -2,6 +2,7 @@
 A CLI remake in Python of the first opus of Five Night At Freddy's
 
 The commands are as above:
+
 w : left door;
 
 c : right door;
