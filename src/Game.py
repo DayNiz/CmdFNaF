@@ -1,5 +1,5 @@
 from src.Office import Office
-from src.Animatronics import Bonnie, Chica, Foxy
+from src.Animatronics import Bonnie, Chica, Foxy, Freddy
 from src.Camera import Camera
 import os
 import keyboard
@@ -16,6 +16,7 @@ class Game:
         self.office: Office = Office(self.view_side, self)
         self.running: bool = True
         self.monitor = Camera(self)
+        self.freddy = Freddy(self, level=0)
         self.bonnie = Bonnie(self, level=0)
         self.chica = Chica(self, level=0)
         self.foxy = Foxy(self, level=0)
@@ -106,6 +107,12 @@ class Game:
                 elif checking_input == "g":
                     if self.monitor.isOn:
                         self.monitor.current_camera = "Pirate's Cove"
+                        self.monitor.show()
+                    else:
+                        self.office.show(self.clock, self.comsum)
+                elif checking_input == "j":
+                    if self.monitor.isOn:
+                        self.monitor.current_camera = "Toilets"
                         self.monitor.show()
                     else:
                         self.office.show(self.clock, self.comsum)

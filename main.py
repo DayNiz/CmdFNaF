@@ -1,6 +1,6 @@
 import os
 from src.Clocking_Game import Clocking
-os.system('mode con: cols=50 lines=5')
+os.system('mode con: cols=65 lines=5')
 
 ########################
 #     COMMANDS         #
@@ -10,6 +10,7 @@ os.system('mode con: cols=50 lines=5')
 # e : right light      #
 # q : look left        #
 # d : look right       #
+# s : monitor          #
 # z : reset door&light #
 #   FOR CAMERA         #
 # y : back stage       #
@@ -18,12 +19,10 @@ os.system('mode con: cols=50 lines=5')
 # b : left hall        #
 # n : right hall       #
 # s : show the office  #
-#     in the state you #
+#     in the isOn you #
 #     have left it     #
 ########################
 
 
 if __name__ == '__main__':
-    game: Clocking = Clocking()
-    print("Almost Done...")
-    game.run()
+    Cl_game: Clocking = Clocking()

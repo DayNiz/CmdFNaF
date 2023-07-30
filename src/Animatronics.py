@@ -1,7 +1,7 @@
 import time
-from random import randint
+from random import randint, uniform
 from pygame import mixer
-from src.office_state import art_jump_bonnie, art_jump_chica, art_jump_foxy
+from src.office_state import art_jump_bonnie, art_jump_chica, art_jump_foxy, art_jump_freddy
 
 
 class Animatronics:
@@ -16,13 +16,12 @@ class Animatronics:
         self.movement_opportunity: int = 0
         self.just_arrive_at_office: bool = True
         self.jump_art: str = ""
-        self.wait_time_min = 1.5
-        self.wait_time_max = 10
-        self.moving_speed = self.wait_time_max - (self.wait_time_max - self.wait_time_min) * (self.level - 1) / 19.0
+        self.waiting_time: float = 0
 
         self.scream_sound = mixer.Sound("src/Scream.wav")
         self.knock_sound = mixer.Sound("src/KnockingDoor.wav")
         self.light_sound = mixer.Sound("src/SeeLight.wav")
+        self.walk_sound = mixer.Sound("src/FootWalk.wav")
 
     def check_movement_opportunity(self):
         self.movement_opportunity = randint(1, 20)
@@ -35,6 +34,8 @@ class Animatronics:
         except IndexError:
             self.path_pos = 0
             self.pos = self.path[self.path_pos]
+        if self.pos not in ("office light_left", "office"):
+            self.walk_sound.play()
 
     def is_on_office(self):
         if self.pos == "office light_left":
@@ -70,16 +71,16 @@ class Animatronics:
     def jumpscare(self):
         if self.game.running:
             self.scream_sound.play()
-        self.game.running = False
-        self.game.running = False
-        self.game.clear_screen()
-        print(self.jump_art)
-        time.sleep(0.5)
-        print(self.jump_art)
+            self.game.running = False
+            self.game.running = False
+            self.game.clear_screen()
+            print(self.jump_art)
+            time.sleep(0.5)
+            print(self.jump_art)
 
     def run(self):
         while self.game.running:
-            time.sleep(self.moving_speed)
+            time.sleep(self.waiting_time)
             if self.check_movement_opportunity():
                 self.move()
             else:
@@ -94,9 +95,10 @@ class Bonnie(Animatronics):
         self.name = "bonnie"
         self.pos = "Show Stage"
         self.jump_art = art_jump_bonnie
+        self.waiting_time = 4.97
 
         self.path = ("Show Stage", "BackStage", "Show Stage",
-                     "Left Hall", "office light_left", "office")
+                     "Dining Area", "Left Hall", "office light_left", "office")
 
 
 class Chica(Animatronics):
@@ -105,8 +107,9 @@ class Chica(Animatronics):
         self.name = "chica"
         self.pos = "Show Stage"
         self.jump_art = art_jump_chica
+        self.waiting_time = 4.98
 
-        self.path = ("Show Stage", "Dining Area", "Show Stage", "Dining Area",
+        self.path = ("Show Stage", "Dining Area", "Show Stage", "Toilets",
                      "Right Hall", "office light_right", "office")
 
 
@@ -117,23 +120,81 @@ class Foxy(Animatronics):
         # 0 : dedans --> 4 : sorti
         self.stage_out = 0
         self.name = "foxy"
+        self.waiting_time = 5.01
+        self.power_taking = 1
+        self.run_sound = mixer.Sound("src/Run.wav")
+
         self.jump_art = art_jump_foxy
 
     def run(self):
         while self.game.running:
-            time.sleep(self.moving_speed)
-            if self.check_movement_opportunity() and self.game.monitor.isOn:
-                # il se déplace
-                self.stage_out += 1
+            time.sleep(self.waiting_time)
+            if not self.game.monitor.isOn:
+                if self.check_movement_opportunity():
+                    # il se déplace
+                    self.stage_out += 1
 
-                if self.stage_out == 3:
-                    # si il est parti
-                    time.sleep(2)
-                    if self.game.office.left.door.is_open:
-                        self.jumpscare()
-                    else:
-                        self.knock_sound.play()
-                        self.stage_out = 0
+                    if self.stage_out == 3:
+                        self.run_sound.play()
+                        time.sleep(2)
+                        if self.game.office.left.door.is_open:
+                            self.jumpscare()
+                        else:
+                            self.knock_sound.play()
+                            self.game.batt_level -= self.power_taking
+                            self.power_taking += 6
+                            self.stage_out = 0
+            else:
+                time.sleep(uniform(0.83, 6.67))
+
+
+class Freddy(Animatronics):
+    def __init__(self, game, level: int):
+        super().__init__(game)
+        self.name = "freddy"
+        self.pos = "Show Stage"
+        self.jump_art = art_jump_freddy
+        self.waiting_time = 3.02
+
+        self.path = ("Show Stage", "Dining Area", "Show Stage", "Toilets",
+                     "Right Hall")
+
+    def countdown(self):
+        countdown_value = (1000-(100*self.level))*1.67
+        if countdown_value < 0:
+            countdown_value = 0
+        time.sleep(countdown_value)
+
+    def run(self):
+        while self.game.running:
+            time.sleep(self.waiting_time)
+            # if self.check_movement_opportunity() and self.game.monitor.current_camera != self.pos:
+            if self.check_movement_opportunity():
+                self.countdown()
+                self.move()
+            self.is_on_office()
+
+    def move(self):
+        if self.game.monitor.isOn and self.game.monitor.current_camera == self.pos:
+            # he can't move cuz we watch him
+            time.sleep(self.waiting_time)  # he waits a little
+        else:
+            self.path_pos += 1
+        try:
+            self.pos = self.path[self.path_pos]
+        except IndexError:
+            self.path_pos = 0
+            self.pos = self.path[self.path_pos]
+
+    def is_on_office(self):
+        # freddy ne rentre pas dans l'office, mais reste dans le right hall
+        if self.pos == "Right Hall":
+            if self.game.office.right.door.is_open and self.game.monitor.isOn \
+                    and self.game.monitor.current_camera != self.pos:
+                self.countdown()
+                self.jumpscare()
 
             else:
-                pass
+                self.game.office.right.light.anim_name = ""
+                self.path_pos = 4  # he never leaves the corner
+                self.pos = self.path[self.path_pos]

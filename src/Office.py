@@ -72,11 +72,13 @@ class Office:
         self.side = side
         self.left: Side = Side()
         self.right: Side = Side()
+        self.desk_art = OFFICE_art
 
     def show(self, clock, comsum):
         if self.side == 0:
             self.left.show()
         elif self.side == 1:
-            print(comsum_art[comsum], show_battery(round(self.game.batt_level)), clock_art[clock], OFFICE_art, sep="")
+            print(comsum_art[comsum], show_battery(round(self.game.batt_level)),
+                  clock_art[clock], self.desk_art, sep="")
         elif self.side == 2:
             self.right.show()
