@@ -15,11 +15,12 @@ q : look left;
 
 d : look right;
 
+s : open/close camera
+
 z : reset door&light;
 
+
 FOR THE CAMERAS
-
-
 y : back stage;
 
 u : show/main stage;
@@ -28,11 +29,11 @@ h : dining area;
 
 g : pirate's cove
 
+j : toilets
+
 b : left hall;
 
 n : right hall;
-
-s : toggle camera/office
 
 ---
 
