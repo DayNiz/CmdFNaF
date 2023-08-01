@@ -37,6 +37,10 @@ n : right hall;
 
 ---
 
+HUGE THANKS to my friends, SEIGNEUR TROLL, for the Beta-testing and Youtube GamePlay (here's the video : https://www.youtube.com/watch?v=kVDmgUgOcYo&t=15s). He help me seing so many bugs I wouldn't have seen without him!
+
+---
+
 --WARNING--
 
 If you want to compile it yourself, make sure the executable is with a folder named src with all the sounds (the .wav files).
