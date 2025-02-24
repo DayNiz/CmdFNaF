@@ -1,4 +1,5 @@
 from pygame import mixer
+from random import randint
 from src.CameraArt import CameraArt
 
 

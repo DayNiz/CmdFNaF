@@ -4,6 +4,7 @@ from src.Camera import Camera
 import os
 import keyboard
 from pygame import mixer
+from random import randint
 from src.office_state import art_6am
 
 
