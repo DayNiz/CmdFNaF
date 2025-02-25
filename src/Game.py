@@ -22,6 +22,8 @@ class Game:
         self.chica = Chica(self, level=0)
         self.foxy = Foxy(self, level=0)
 
+        
+        #TODO: replace by curses keyboard manager
         self.is_keyboard_pressed = False
 
         self.monitor.get_animatronics_position()
@@ -30,6 +32,7 @@ class Game:
 
     # Fonction pour effacer l'écran
     def clear_screen(self):
+        #TODO: replace by curses clear_screen()
         if os.name == "nt":
             os.system("cls")
         else:

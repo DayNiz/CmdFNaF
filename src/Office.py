@@ -79,6 +79,7 @@ class Office:
         if self.side == 0:
             self.left.show()
         elif self.side == 1:
+            #TODO: replace by curses
             print(comsum_art[comsum], show_battery(round(self.game.batt_level)),
                   clock_art[clock], self.desk_art, sep="")
         elif self.side == 2:

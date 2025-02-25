@@ -73,10 +73,11 @@ class Animatronics:
             self.scream_sound.play()
             self.game.running = False
             self.game.running = False
+            #TODO: replace by curses:
             self.game.clear_screen()
             print(self.jump_art)
             time.sleep(0.5)
-            print(self.jump_art)
+            ###
 
     def run(self):
         while self.game.running:

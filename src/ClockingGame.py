@@ -11,6 +11,9 @@ mixer.init()
 class Clocking:
     """
     Class de gestion du temps en parallèle / threading du jeu CmdFNaF
+    TODO: replace by a mono-threaded game
+    thread order:
+    game_state -> clock -> freddy -> foxy -> bonnie -> chica -> golden -> battery -> sound
     """
 
     def __init__(self):
@@ -20,9 +23,11 @@ class Clocking:
 
         if self.game.freddy.level == 1 and self.game.bonnie.level == 9 \
                 and self.game.chica.level == 8 and self.game.foxy.level == 7:
+            #TODO: replace by curses:
             self.game.clear_screen()
             os.system('mode con: cols=25 lines=17')
             print(art_jump_golden)
+            ###
             time.sleep(5)
         else:
             self.gameThread = GameThread(self.game)

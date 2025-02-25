@@ -1,3 +1,8 @@
+#TODO refactor strings with:
+# name = [
+# (COLOR, "string"), (COLOR2, "string2"), (BLACK, "\n")
+# ... (repeat for each line)
+# ]
 # 6AM
 art_6am = """
        _____

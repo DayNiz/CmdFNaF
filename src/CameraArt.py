@@ -1,3 +1,8 @@
+#TODO refactor strings with:
+# name = [
+# (COLOR, "string"), (COLOR2, "string2"), (BLACK, "\n")
+# ... (repeat for each line)
+# ]
 class CameraArt:
     def __init__(self):
         self.main_stage_art = {"BC": "~~~~~~~~~~~~[Y][U]~~\n\

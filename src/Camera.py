@@ -66,6 +66,7 @@ class Camera:
             # none are visible
 
     def show(self):
+        #TODO: replace with curses
         self.changing_sound.play()
         self.get_animatronics_position()
         self.game.clear_screen()
