@@ -23,10 +23,7 @@ class Clocking:
 
         if self.game.freddy.level == 1 and self.game.bonnie.level == 9 \
                 and self.game.chica.level == 8 and self.game.foxy.level == 7:
-            #TODO: replace by curses:
-            self.game.clear_screen()
-            os.system('mode con: cols=25 lines=17')
-            print(art_jump_golden)
+            self.game.afton.a_print(art_jump_golden)
             ###
             time.sleep(5)
         else:
@@ -156,7 +153,6 @@ class BatteryThread(threading.Thread):
             self.game.batt_level -= 1
             self.game.batt_level -= self.game.comsum * 0.5
             if self.game.office.side == 1 and not self.game.monitor.isOn and self.game.running:
-                self.game.clear_screen()
                 self.game.office.show(self.game.clock, self.game.comsum)
 
 
@@ -180,7 +176,7 @@ class GoldenThread(threading.Thread):
                     waited_time += 0.1
                     if waited_time >= 3:
                         self.scream_sound.play()
-                        print(art_jump_golden)
+                        self.game.afton.a_print(art_jump_golden)
                         self.game.running = False
                         break
                 self.game.office.desk_art = OFFICE_art

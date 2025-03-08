@@ -1,24 +1,29 @@
 #TODO refactor strings with:
 # name = [
-# (COLOR, "string"), (COLOR2, "string2"), (BLACK, "\n")
+# (Afton.COLOR, "string"), (Afton.COLOR2, "string2\n")
 # ... (repeat for each line)
+# Remember: without the '\n' at the end of the line
+# it will just continue on the same.
 # ]
+import Afton
+
 class CameraArt:
     def __init__(self):
-        self.main_stage_art = {"BC": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE~~~~~[B]{}[N]~\n\
-~~*~~~~~~~~~~~~~*~~~\n\
-~***~~~~~~~~~~~***~~\n\
-~***~~~~~~~~~~~~*~~~\n\
-~~* 3 3 ~~ _44_ ~~~~\n\
-~~~ 3_3 ~~'&  &'~~~~\n\
-~~~'@ @'~~' ^^ '~~~~\n\
-~~~' = '~~' \\/ '~~~~\n\
-~~~ --- ~~'____'~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               "B": "~~~~~~~~~~~~[Y][U]~~\n\
+        self.main_stage_art = {"BC": [
+(Afton.WHITE, "~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE, "~~"),(Afton.CYAN,"MAIN"),(Afton.WHITE,"~~~[G]~[H][J]~\n"),
+(Afton.WHITE, "~"),(Afton.CYAN,"STAGE"),(Afton.WHITE,"~~~~~[B]{}[N]~\n"),
+(Afton.WHITE, "~~*~~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE, "~***~~~~~~~~~~~***~~\n"),
+(Afton.WHITE, "~***~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE, "~~*"),(Afton.BLUE," 3 3 "),(Afton.WHITE,"~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~~~\n"),
+(Afton.WHITE, "~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~~~~\n"),
+(Afton.WHITE, "~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~~~~\n"),
+(Afton.WHITE, "~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~~\n"),
+(Afton.WHITE, "~~~"),(Afton.BLUE," --- "),(Afton.WHITE,"~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~~\n"),
+(Afton.WHITE, "~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE, "~~~~~~~~~~~~~~~~~~~~")],
+                        "B": "~~~~~~~~~~~~[Y][U]~~\n\
 ~~MAIN~~~[G]~[H][J]~\n\
 ~STAGE~~~~~[B]{}[N]~\n\
 ~~*~~~~~~~~~~~~~*~~~\n\

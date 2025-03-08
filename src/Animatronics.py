@@ -1,6 +1,7 @@
 import time
 from random import randint, uniform
 from pygame import mixer
+import Afton
 from src.office_state import art_jump_bonnie, art_jump_chica, art_jump_foxy, art_jump_freddy
 
 
@@ -72,12 +73,8 @@ class Animatronics:
         if self.game.running:
             self.scream_sound.play()
             self.game.running = False
-            self.game.running = False
-            #TODO: replace by curses:
-            self.game.clear_screen()
-            print(self.jump_art)
+            self.game.afton.a_print(self.jump_art)
             time.sleep(0.5)
-            ###
 
     def run(self):
         while self.game.running:

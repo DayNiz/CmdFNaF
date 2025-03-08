@@ -9,7 +9,7 @@ class Side:
         self.light: Light = Light()
 
     def show(self):
-        print(self.light.art, self.door.art, sep="")
+        Afton.a_print(self.light.art, self.door.art)
 
 
 class Door:
@@ -75,12 +75,11 @@ class Office:
         self.right: Side = Side()
         self.desk_art = OFFICE_art
 
-    def show(self, clock, comsum):
+    def show(self, clock, comsum, screen):
         if self.side == 0:
             self.left.show()
         elif self.side == 1:
-            #TODO: replace by curses
-            print(comsum_art[comsum], show_battery(round(self.game.batt_level)),
-                  clock_art[clock], self.desk_art, sep="")
+            Afton.a_print(comsum_art[comsum], show_battery(round(self.game.batt_level)),
+                  clock_art[clock], self.desk_art)
         elif self.side == 2:
             self.right.show()

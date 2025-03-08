@@ -1,6 +1,7 @@
 from src.Office import Office
 from src.Animatronics import Bonnie, Chica, Foxy, Freddy
 from src.Camera import Camera
+from Afton import Afton
 import os
 import keyboard
 from pygame import mixer
@@ -22,6 +23,8 @@ class Game:
         self.chica = Chica(self, level=0)
         self.foxy = Foxy(self, level=0)
 
+        self.afton = Afton()
+
         
         #TODO: replace by curses keyboard manager
         self.is_keyboard_pressed = False
@@ -29,14 +32,6 @@ class Game:
         self.monitor.get_animatronics_position()
 
         self.end_night_sound = mixer.Sound("src/6AM.wav")
-
-    # Fonction pour effacer l'écran
-    def clear_screen(self):
-        #TODO: replace by curses clear_screen()
-        if os.name == "nt":
-            os.system("cls")
-        else:
-            os.system("clear")
 
     def check_comsum(self):
         self.comsum = 0
@@ -66,7 +61,6 @@ class Game:
             self.check_input()
             self.check_comsum()
             if self.office.side == 1 and not self.monitor.isOn:
-                self.clear_screen()
                 self.office.show(self.clock, self.comsum)
             if self.bonnie.is_on_office() or self.chica.is_on_office():
                 self.running = False
@@ -77,7 +71,6 @@ class Game:
         checking_input = checking_keyboard.name
         try:
             if checking_keyboard.event_type == 'down' and self.batt_level > 0 and self.running:
-                self.clear_screen()
                 if checking_input == "u":
                     if self.monitor.isOn:
                         self.monitor.current_camera = "Show Stage"
@@ -183,7 +176,6 @@ class Game:
 
     def add_one_hour(self):
         self.clock += 1
-        self.clear_screen()
         self.office.show(self.clock, self.comsum)
 
     def six_am(self):
@@ -191,5 +183,5 @@ class Game:
         function called when it's 6AM
         """
         self.end_night_sound.play()
-        print(art_6am)
+        self.game.afton.a_print(art_6am)
         self.running = False

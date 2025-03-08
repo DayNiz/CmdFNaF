@@ -66,25 +66,23 @@ class Camera:
             # none are visible
 
     def show(self):
-        #TODO: replace with curses
         self.changing_sound.play()
         self.get_animatronics_position()
-        self.game.clear_screen()
         if self.current_camera == "Show Stage":
-            print(self.all_cam_art.main_stage_art[self.animatronics_on_camera])
+            self.game.afton.a_print(self.all_cam_art.main_stage_art[self.animatronics_on_camera])
         elif self.current_camera == "BackStage":
-            print(self.all_cam_art.backstage_art[self.animatronics_on_camera])
+            self.game.afton.a_print(self.all_cam_art.backstage_art[self.animatronics_on_camera])
         elif self.current_camera == "Dining Area":
-            print(self.all_cam_art.dining_area_art[self.animatronics_on_camera])
+            self.game.afton.a_print(self.all_cam_art.dining_area_art[self.animatronics_on_camera])
         elif self.current_camera == "Left Hall":
-            print(self.all_cam_art.left_hall_art[self.animatronics_on_camera])
+            self.game.afton.a_print(self.all_cam_art.left_hall_art[self.animatronics_on_camera])
         elif self.current_camera == "Right Hall":
-            print(self.all_cam_art.right_hall_art[self.animatronics_on_camera])
+            self.game.afton.a_print(self.all_cam_art.right_hall_art[self.animatronics_on_camera])
         elif self.current_camera == "Pirate's Cove":
             self.itsme_chance = randint(1, 100) == 1
             if self.itsme_chance:
-                print(self.all_cam_art.pirate_cove_art["its_me"])
+                self.game.afton.a_print(self.all_cam_art.pirate_cove_art["its_me"])
             else:
-                print(self.all_cam_art.pirate_cove_art[self.game.foxy.stage_out])
+                self.game.afton.a_print(self.all_cam_art.pirate_cove_art[self.game.foxy.stage_out])
         elif self.current_camera == "Toilets":
-            print(self.all_cam_art.toilets_art[self.animatronics_on_camera])
+            self.game.afton.a_print(self.all_cam_art.toilets_art[self.animatronics_on_camera])
