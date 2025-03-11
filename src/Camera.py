@@ -86,3 +86,5 @@ class Camera:
                 self.game.afton.a_print(self.all_cam_art.pirate_cove_art[self.game.foxy.stage_out])
         elif self.current_camera == "Toilets":
             self.game.afton.a_print(self.all_cam_art.toilets_art[self.animatronics_on_camera])
+        
+        self.game.afton.refresh_screen()

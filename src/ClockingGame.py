@@ -2,6 +2,7 @@ import threading
 import time
 from src.Game import Game
 from src.office_state import art_jump_golden, OFFICE_GF_art, OFFICE_art
+from src.Afton import Afton
 import os
 from pygame import mixer
 from random import randint
@@ -20,12 +21,17 @@ class Clocking:
         self.game = Game()
 
         self.init_night()
+        self.game.afton = Afton()
 
         if self.game.freddy.level == 1 and self.game.bonnie.level == 9 \
                 and self.game.chica.level == 8 and self.game.foxy.level == 7:
+            
+            self.scream_sound = mixer.Sound("src/GFScream.wav")
             self.game.afton.a_print(art_jump_golden)
+            self.game.afton.refresh_screen()
+            self.scream_sound.play()
             ###
-            time.sleep(5)
+            time.sleep(2)
         else:
             self.gameThread = GameThread(self.game)
             self.clockThread = ClockThread(self.game)
@@ -40,7 +46,6 @@ class Clocking:
             self.run()
 
     def run(self):
-        os.system('mode con: cols=25 lines=17')
         self.gameThread.start()
         self.clockThread.start()
         self.freddyThread.start()
@@ -177,6 +182,7 @@ class GoldenThread(threading.Thread):
                     if waited_time >= 3:
                         self.scream_sound.play()
                         self.game.afton.a_print(art_jump_golden)
+                        self.game.afton.refresh_screen()
                         self.game.running = False
                         break
                 self.game.office.desk_art = OFFICE_art

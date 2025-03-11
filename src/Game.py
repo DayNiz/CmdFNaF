@@ -1,7 +1,7 @@
 from src.Office import Office
 from src.Animatronics import Bonnie, Chica, Foxy, Freddy
 from src.Camera import Camera
-from Afton import Afton
+from src.Afton import Afton
 import os
 import keyboard
 from pygame import mixer
@@ -22,8 +22,7 @@ class Game:
         self.bonnie = Bonnie(self, level=0)
         self.chica = Chica(self, level=0)
         self.foxy = Foxy(self, level=0)
-
-        self.afton = Afton()
+        self.afton = None
 
         
         #TODO: replace by curses keyboard manager
@@ -184,4 +183,5 @@ class Game:
         """
         self.end_night_sound.play()
         self.game.afton.a_print(art_6am)
+        self.game.afton.refresh_screen()
         self.running = False

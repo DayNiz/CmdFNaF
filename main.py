@@ -1,5 +1,5 @@
 import os
-from src.Clocking_Game import Clocking
+from src.ClockingGame import Clocking
 
 ########################
 #     COMMANDS         #
@@ -35,3 +35,4 @@ from src.Clocking_Game import Clocking
 if __name__ == '__main__':
     #TODO BUG: replace by mono-thread (see src/Clocking_Game.py)
     Cl_game: Clocking = Clocking()
+    Cl_game.game.afton.exit()

@@ -1,7 +1,7 @@
 import time
 from random import randint, uniform
 from pygame import mixer
-import Afton
+from src import Afton
 from src.office_state import art_jump_bonnie, art_jump_chica, art_jump_foxy, art_jump_freddy
 
 
@@ -74,6 +74,7 @@ class Animatronics:
             self.scream_sound.play()
             self.game.running = False
             self.game.afton.a_print(self.jump_art)
+            self.game.afton.refresh_screen()
             time.sleep(0.5)
 
     def run(self):

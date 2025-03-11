@@ -1,18 +1,17 @@
-#TODO refactor strings with:
 # name = [
 # (Afton.COLOR, "string"), (Afton.COLOR2, "string2\n")
 # ... (repeat for each line)
 # Remember: without the '\n' at the end of the line
 # it will just continue on the same.
 # ]
-import Afton
+from src import Afton
 
 class CameraArt:
     def __init__(self):
         self.main_stage_art = {"BC": [
 (Afton.WHITE, "~~~~~~~~~~~~[Y][U]~~\n"),
-(Afton.WHITE, "~~"),(Afton.CYAN,"MAIN"),(Afton.WHITE,"~~~[G]~[H][J]~\n"),
-(Afton.WHITE, "~"),(Afton.CYAN,"STAGE"),(Afton.WHITE,"~~~~~[B]{}[N]~\n"),
+(Afton.WHITE, "~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE, "~STAGE~~~~~[B]{}[N]~\n"),
 (Afton.WHITE, "~~*~~~~~~~~~~~~~*~~~\n"),
 (Afton.WHITE, "~***~~~~~~~~~~~***~~\n"),
 (Afton.WHITE, "~***~~~~~~~~~~~~*~~~\n"),
@@ -23,424 +22,455 @@ class CameraArt:
 (Afton.WHITE, "~~~"),(Afton.BLUE," --- "),(Afton.WHITE,"~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~~\n"),
 (Afton.WHITE, "~~~~~~~~~~~~~~~~~~~~\n"),
 (Afton.WHITE, "~~~~~~~~~~~~~~~~~~~~")],
-                        "B": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE~~~~~[B]{}[N]~\n\
-~~*~~~~~~~~~~~~~*~~~\n\
-~***~~~~~~~~~~~***~~\n\
-~***~~~~~~~~~~~~*~~~\n\
-~~* 3 3 ~~~~~~~~~~~~\n\
-~~~ 3_3 ~~~~~~~~~~~~\n\
-~~~'@ @'~~~~~~~~~~~~\n\
-~~~' = '~~~~~~~~~~~~\n\
-~~~ --- ~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               "C": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE~~~~~[B]{}[N]~\n\
-~~*~~~~~~~~~~~~~*~~~\n\
-~***~~~~~~~~~~~***~~\n\
-~***~~~~~~~~~~~~*~~~\n\
-~~*~~~~~~~~ _44_ ~~~\n\
-~~~~~~~~~~~'&  &'~~~\n\
-~~~~~~~~~~~' ^^ '~~~\n\
-~~~~~~~~~~~' \\/ '~~~\n\
-~~~~~~~~~~~'____'~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE~~~~~[B]{}[N]~\n\
-~~*~~~~~~~~~~~~~*~~~\n\
-~***~~~~~~~~~~~***~~\n\
-~***~~~~~~~~~~~~*~~~\n\
-~~*~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               "BCF": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE  _  [B]{}[N]~\n\
-~~*~~~^! !^~~~~~*~~~\n\
-~***~~*@ @*~~~~***~~\n\
-~***~~' # '~~~~~*~~~\n\
-~~* 3 3___/~_44_ ~~~\n\
-~~~ 3_3 ~~~'&  &'~~~\n\
-~~~'@ @'~~~' ^^ '~~~\n\
-~~~' = '~~~' \\/ '~~~\n\
-~~~ --- ~~~'____'~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               "BF": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE  _  [B]{}[N]~\n\
-~~*~~~^! !^~~~~~*~~~\n\
-~***~~*@ @*~~~~***~~\n\
-~***~~' # '~~~~~*~~~\n\
-~~* 3 3___/~~~~~~~~~\n\
-~~~ 3_3 ~~~~~~~~~~~~\n\
-~~~'@ @'~~~~~~~~~~~~\n\
-~~~' = '~~~~~~~~~~~~\n\
-~~~ --- ~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               "CF": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE  _  [B]{}[N]~\n\
-~~*~~~^! !^~~~~~*~~~\n\
-~***~~*@ @*~~~~***~~\n\
-~***~~' # '~~~~~*~~~\n\
-~~*~~~\\___/~_44_ ~~~\n\
-~~~~~~~~~~~'&  &'~~~\n\
-~~~~~~~~~~~' ^^ '~~~\n\
-~~~~~~~~~~~' \\/ '~~~\n\
-~~~~~~~~~~~'____'~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                               "F": "~~~~~~~~~~~~[Y][U]~~\n\
-~~MAIN~~~[G]~[H][J]~\n\
-~STAGE  _  [B]{}[N]~\n\
-~~*~~~^! !^~~~~~*~~~\n\
-~***~~*@ @*~~~~***~~\n\
-~***~~' # '~~~~~*~~~\n\
-~~*~~~\\___/~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~"}
-        self.backstage_art = {"B": "~~~~~~~~~~~~[Y][U]~~\n\
-~~BACK~~~[G]~[H][J]~\n\
-~STAGE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~.__.~~~~~~~~~~~~~~~\n\
-~|__|~~~~~~~ 3 3 ~~~\n\
-~~||~~~~~~~~ 3_3 ~~~\n\
-\\-||-/~~~~~~'@ @'~~~\n\
-~~||~~~~~~~~' = '~~~\n\
-~|--|~~~~~~~ --- ~~~\n\
-_|  |_~~~~~~~~~~~~~~\n\
-____________________\n\
---------------------",
-                              0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~BACK~~~[G]~[H][J]~\n\
-~STAGE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~.__.~~~~~~~~~~~~~~~\n\
-~|__|~~~~~~~~~~~~~~~\n\
-~~||~~~~~~~~~~~~~~~~\n\
-\\-||-/~~~~~~~~~~~~~~\n\
-~~||~~~~~~~~~~~~~~~~\n\
-~|--|~~~~~~~~~~~~~~~\n\
-_|  |_~~~~~~~~~~~~~~\n\
-____________________\n\
---------------------"}
+                        "B": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~~~~~~~~~~***~~\n"),
+(Afton.WHITE,"~***~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE,"~~*"),(Afton.BLUE," 3 3 "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE," --- "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n")],
+                               "C": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~~~~~~~~~~***~~\n"),
+(Afton.WHITE,"~***~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE,"~~*~~~~~~~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n")],
+                               0: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~~~~~~~~~~***~~\n"),
+(Afton.WHITE,"~***~~~~~~~~~~~~*~~~\n"),
+(Afton.WHITE,"~~*~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n")],
+                               "BCF": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE  _  [B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~"),(Afton.RED,"^! !^"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"*@ @*"),(Afton.WHITE,"~~~~***~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"' # '"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~~*"),(Afton.BLUE," 3 3"),(Afton.RED,"___/"),(Afton.WHITE,"~"),(Afton.YELLOW,"_44_ "),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE," --- "),(Afton.WHITE,"~~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n")],
+                               "BF": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE  _  [B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~"),(Afton.RED,"^! !^"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"*@ @*"),(Afton.WHITE,"~~~~***~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"' # '"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~~*"),(Afton.BLUE," 3 3"),(Afton.RED,"___/"),(Afton.WHITE,"~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~"),(Afton.BLUE," --- "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~")],
+                               "CF": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE  _  [B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~"),(Afton.RED,"^! !^"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"*@ @*"),(Afton.WHITE,"~~~~***~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"' # '"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~~*~~~"),(Afton.RED,"\\___/"),(Afton.WHITE,"~"),(Afton.YELLOW,"_44_"),(Afton.WHITE," ~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n")],
+                               "F": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~MAIN~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE  _  [B]{}[N]~\n"),
+(Afton.WHITE,"~~*~~~"),(Afton.RED,"^! !^"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"*@ @*"),(Afton.WHITE,"~~~~***~~\n"),
+(Afton.WHITE,"~***~~"),(Afton.RED,"' # '"),(Afton.WHITE,"~~~~~*~~~\n"),
+(Afton.WHITE,"~~*~~~"),(Afton.RED,"\\___/"),(Afton.WHITE,"~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n")]}
+        self.backstage_art = {"B": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~BACK~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.CYAN,".__."),(Afton.WHITE,"~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.CYAN,"|__|"),(Afton.WHITE,"~~~~~~~"),(Afton.BLUE," 3 3 "),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~"),(Afton.WHITE,"||"),(Afton.WHITE,"~~~~~~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~\n"),
+(Afton.CYAN,"\\-||-/"),(Afton.WHITE,"~~~~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~"),(Afton.CYAN,"||~~~~~~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~"),(Afton.CYAN,"|--|"),(Afton.WHITE,"~~~~~~~"),(Afton.BLUE," --- "),(Afton.WHITE,"~~~\n"),
+(Afton.CYAN,"_|  |_"),(Afton.WHITE,"~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"____________________\n"),
+(Afton.WHITE,"--------------------")],
+                              0: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~BACK~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~STAGE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.CYAN,".__."),(Afton.WHITE,"~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.CYAN,"|__|"),(Afton.WHITE,"~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.WHITE,"||"),(Afton.WHITE,"~~~~~~~~~~~~~~~~\n"),
+(Afton.CYAN,""),(Afton.WHITE,"\\-||-/"),(Afton.WHITE,"~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.WHITE,"||"),(Afton.WHITE,"~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.WHITE,"|--|"),(Afton.WHITE,"~~~~~~~~~~~~~~~\n"),
+(Afton.CYAN,"_|  |_"),(Afton.WHITE,"~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"____________________\n"),
+(Afton.WHITE,"--------------------")]}
 
-        self.dining_area_art = {"C": "~~~~~~~~~~~~[Y][U]~~\n\
-~DINING~~[G]~[H][J]~\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~ _44_ ~~~~~~~~~~~~\n\
-~~'&  &'~_______~~~~\n\
-~~' ^^ '~|     |~~~~\n\
-~~' \\/ '~~~~~~~~~~~~\n\
-~~'____'~~~______~~~\n\
-~~_____~~~~|    |~~~\n\
-~~|   |~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                                "CF": "~~~~~~~~~~~~[Y][U]~~\n\
-~DINING~~~[G]~[H][J]\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~° °~~~\n\
-~~ _44_ ~~~~~~~~~~~~\n\
-~~'&  &'~_______~~~~\n\
-~~' ^^ '~|     |~~~~\n\
-~~' \\/ '~~~~~~~~~~~~\n\
-~~'____'~~~______~~~\n\
-~~_____~~~~|    |~~~\n\
-~~|   |~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                                "F": "~~~~~~~~~~~[7]~~[9]~\n\
-~DINING~~~[G]~[H][J]\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~° °~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~_______~~~~\n\
-~~~~~~~~~|     |~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~______~~~\n\
-~~~~~~~~~~~|    |~~~\n\
-~~|   |~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                                0: "~~~~~~~~~~~[7]~~[9]~\n\
-~DINING~~~[G]~[H][J]~\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~_______~~~~\n\
-~~~~~~~~~|     |~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~______~~~\n\
-~~~~~~~~~~~|    |~~~\n\
-~~|   |~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~",
-                                "BC": "~~~~~~~~~~~[Y][U]~~\n\
-~DINING~~[G]~[H][J]~\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~ _44_ ~~~~~~~~~~~~\n\
-~~'&  &'~_______~~~~\n\
-~~' ^^ '~|     |~~~~\n\
-~~' \\/ '~~~~~~~~~~~~\n\
-~~'____'~~~______~~~\n\
-~~_____~~~~| 3 3|~~~\n\
-~~|   |~~~~~ 3_3 ~~~\n\
-~~~~~~~~~~~~'@ @'~~~\n\
-~~~~~~~~~~~~' = '~~~",
-                                "BF": "~~~~~~~~~~~[Y][U]~~\n\
-~DINING~~[G]~[H][J]~\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~° °~~~\n\
-~~~~~~~~~_______~~~~\n\
-~~~~~~~~~|     |~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~______~~~\n\
-~~~~~~~~~~~| 3 3|~~~\n\
-~~|   |~~~~~ 3_3 ~~~\n\
-~~~~~~~~~~~~'@ @'~~\n\
-~~~~~~~~~~~~' = '~~~",
-                                "BCF": "~~~~~~~~~~~[Y][U]~~\n\
-~DINING~~[G]~[H][J]~\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~ _44_ ~~~~~~° °~~~\n\
-~~'&  &'~_______~~~~\n\
-~~' ^^ '~|     |~~~~\n\
-~~' \\/ '~~~~~~~~~~~~\n\
-~~'____'~~~______~~~\n\
-~~_____~~~~| 3 3|~~~\n\
-~~|   |~~~~~ 3_3 ~~~\n\
-~~~~~~~~~~~~'@ @'~~~\n\
-~~~~~~~~~~~~' = '~~~",
-                                "B": "~~~~~~~~~~~[Y][U]~~\n\
-~DINING~~[G]~[H][J]~\n\
-~AREA~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~_______~~~~\n\
-~~~~~~~~~|     |~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~______~~~\n\
-~~~~~~~~~~~| 3 3|~~~\n\
-~~|   |~~~~~ 3_3 ~~~\n\
-~~~~~~~~~~~~'@ @'~~~\n\
-~~~~~~~~~~~~' = '~~~"}
+        self.dining_area_art = {"C": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~DINING~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW," _44_"),(Afton.WHITE," ~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'&  &"),(Afton.WHITE,"'~_______~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' ^^ "),(Afton.WHITE,"'~|     |~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' \\/ "),(Afton.WHITE,"'~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'____"),(Afton.WHITE,"'~~~______~~~\n"),
+(Afton.WHITE,"~~_____~~~~|    |~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~")],
+                                "CF": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~DINING~~~[G]~[H][J]\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~"),(Afton.RED,"° °"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~_______~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~|     |~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~______~~~\n"),
+(Afton.WHITE,"~~_____~~~~|    |~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~")],
+                                "F": [
+(Afton.WHITE,"~~~~~~~~~~~[7]~~[9]~\n"),
+(Afton.WHITE,"~DINING~~~[G]~[H][J]\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~"),(Afton.RED,"° °"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~_______~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~|     |~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~______~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~|    |~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~")],
+                                0: [
+(Afton.WHITE,"~~~~~~~~~~~[7]~~[9]~\n"),
+(Afton.WHITE,"~DINING~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~_______~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~|     |~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~______~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~|    |~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~")],
+                                "BC": [
+(Afton.WHITE,"~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~DINING~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~_______~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~|     |~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~______~~~\n"),
+(Afton.WHITE,"~~_____~~~~|"),(Afton.BLUE," 3 3|"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~")],
+                                "BF": [
+(Afton.WHITE,"~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~DINING~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~"),(Afton.RED,"° °"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~_______~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~|     |~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~______~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~|"),(Afton.BLUE," 3 3"),(Afton.WHITE,"|~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~"),(Afton.BLUE," 3_3"),(Afton.WHITE," ~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"'@ @"),(Afton.WHITE,"'~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"' = "),(Afton.WHITE,"'~~~")],
+                                "BCF": [
+(Afton.WHITE,"~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~DINING~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~~~~~"),(Afton.RED,"° °"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~_______~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~|     |~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~~______~~~\n"),
+(Afton.WHITE,"~~_____~~~~|"),(Afton.BLUE," 3 3|"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~")],
+                                "B": [
+(Afton.WHITE,"~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~DINING~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~AREA~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~_______~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~|     |~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~______~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~|"),(Afton.BLUE," 3 3|"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~|   |~~~~~"),(Afton.BLUE," 3_3 "),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"'@ @'"),(Afton.WHITE,"~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.BLUE,"' = '"),(Afton.WHITE,"~~~")]}
 
-        self.pirate_cove_art = {0: "~~~~~~~~~~~~[Y][U]~~\n\
-~PIRATE~~[G]~[H][J]~\n\
-~~COVE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~{{{{{{{{~~}}}}}}}}}\n\
-{{{{{{{{{~~}}}}}}}}}\n\
-{{{{{{{{{~~}}}}}}}}}\n\
-{{{{{{{{{~~}}}}}}}}}\n\
-{{{{{{{{{~~}}}}}}}}}\n\
-{{{{{{{{{~~}}}}}}}}}\n\
-{{{{{{{{{~~}}}}}}}}}\n\
-~{{{{{{{{~~}}}}}}}}}\n\
-~~{{{{{{{~~}}}}}}}}}",
-                                1: "~~~~~~~~~~~~[Y][U]~~\n\
-~PIRATE~~[G]~[H][J]~\n\
-~~COVE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~{{{{{{~~~~~~}}}}}}}\n\
-{{{{{{{~~~~~~}}}}}}}\n\
-{{{{{{{\\__/\\~}}}}}}}\n\
-{{{{{{{°  °|~}}}}}}}\n\
-{{{{{{{    |~}}}}}}}\n\
-{{{{{{{; ;/~~}}}}}}}\n\
-{{{{{{{\\_/~~~}}}}}}}\n\
-~{{{{{{~~~~~~}}}}}}}\n\
-~~{{{{{~~~~~~}}}}}}}",
-                                2: "~~~~~~~~~~~~[Y][U]~~\n\
-~PIRATE~~[G]~[H][J]~\n\
-~~COVE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{^ ^~~~~~~~~~~}}}}}\n\
-{{° °~~~~~~~~~~}}}}}\n\
-{{\\/{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-",
-                                3: "~~~~~~~~~~~~[Y][U]~~\n\
-~PIRATE~~[G]~[H][J]~\n\
-~~COVE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-~{{{{~[OUT OF]~}}}}}\n\
-~~{{{~~[ORDER]~}}}}}",
-                                "its_me": "~~~~~~~~~~~~[Y][U]~~\n\
-~PIRATE~~[G]~[H][J]~\n\
-~~COVE~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-{{{{{~~~~~~~~~~}}}}}\n\
-~{{{{~[ IT'S ]~}}}}}\n\
-~~{{{~~[ ME  ]~}}}}}"}
+        self.pirate_cove_art = {0: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~PIRATE~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~COVE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"~{{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}\n"),
+(Afton.MAGENTA,"~~{{{{{{{"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}}}")],
+                                1: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~PIRATE~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~COVE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{{{"),(Afton.WHITE,"~~~~~~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{"),(Afton.WHITE,"~~~~~~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{"),(Afton.RED,"\\__/\\"),(Afton.WHITE,"~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{"),(Afton.RED,"°  °|"),(Afton.WHITE,"~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{"),(Afton.RED,"    |"),(Afton.WHITE,"~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{"),(Afton.RED,"; ;/"),(Afton.WHITE,"~~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.MAGENTA,"{{{{{{{"),(Afton.RED,"\\_/"),(Afton.WHITE,"~~~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{{{"),(Afton.WHITE,"~~~~~~"),(Afton.MAGENTA,"}}}}}}}\n"),
+(Afton.WHITE,"~~"),(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~"),(Afton.MAGENTA,"}}}}}}}")],
+                                2: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~PIRATE~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~COVE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{"),(Afton.WHITE,"~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{"),(Afton.RED,"^ ^"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{"),(Afton.RED,"° °"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{"),(Afton.RED,"\\/"),(Afton.MAGENTA,"{"),(Afton.WHITE,"~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n")],
+                                3: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~PIRATE~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~COVE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.WHITE,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{~~~~~~~~~~}}}}}\n"),
+(Afton.MAGENTA,"{{{{{~~~~~~~~~~}}}}}\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{"),(Afton.WHITE,"~[OUT OF]~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.WHITE,"~~"),(Afton.MAGENTA,"{{{"),(Afton.WHITE,"~~[ORDER]~"),(Afton.MAGENTA,"}}}}}")],
+                                "its_me": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~PIRATE~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~COVE~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.MAGENTA,"{{{{{"),(Afton.WHITE,"~~~~~~~~~~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.WHITE,"~"),(Afton.MAGENTA,"{{{{"),(Afton.WHITE,"~"),(Afton.RED,"[ IT'S ]"),(Afton.WHITE,"~"),(Afton.MAGENTA,"}}}}}\n"),
+(Afton.WHITE,"~~"),(Afton.MAGENTA,"{{{"),(Afton.WHITE,"~~"),(Afton.RED,"[ ME  ]"),(Afton.WHITE,"~"),(Afton.MAGENTA,"}}}}}")]}
 
-        self.left_hall_art = {"B": "~~~~~~~~~~~~[Y][U]~~\n\
-~~LEFT~~~[G]~[H][J]~\n\
-~~HALL~~~~~[B]{}[N]~\n\
-|/~  3     3  ~~~~/|\n\
-||~ 333   333 ~~~~||\n\
-||~ 333___333 ~~~~||\n\
-||~ /       \\ ~~~~||\n\
-||~| @@   @@ |~~~~||\n\
-||~|         |~~~~||\n\
-||~|\\       /|~~~~||\n\
-||~~\\]-_-_-[/ ~~~\\\\\\\n\
-||~~~.-----.~~~~~~\\\\\n\
-||\\~~~~~~~~~~~~~~~~\\",
-                              0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~LEFT~~~[G]~[H][J]~\n\
-~~HALL~~~~~[B]{}[N]~\n\
-|/~~~~~~~~~~~~~~~~/|\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~\\\\\\\n\
-||~~~~~~~~~~~~~~~~\\\\\n\
-||\\~~~~~~~~~~~~~~~~\\"}
+        self.left_hall_art = {"B": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~LEFT~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~HALL~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"|/~"),(Afton.BLUE,"  3     3  "),(Afton.WHITE,"~~~~/|\n"),
+(Afton.WHITE,"||~"),(Afton.BLUE," 333   333 "),(Afton.WHITE,"~~~~||\n"),
+(Afton.WHITE,"||~"),(Afton.BLUE," 333___333 "),(Afton.WHITE,"~~~~||\n"),
+(Afton.WHITE,"||~"),(Afton.BLUE," /       \\ "),(Afton.WHITE,"~~~~||\n"),
+(Afton.WHITE,"||~"),(Afton.BLUE,"| @@   @@ |"),(Afton.WHITE,"~~~~||\n"),
+(Afton.WHITE,"||~"),(Afton.BLUE,"|         |"),(Afton.WHITE,"~~~~||\n"),
+(Afton.WHITE,"||~"),(Afton.BLUE,"|\\       /|"),(Afton.WHITE,"~~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.BLUE,"\\]-_-_-[/ "),(Afton.WHITE,"~~~\\\\\\\n"),
+(Afton.WHITE,"||~~~.-----.~~~~~~\\\\\n"),
+(Afton.WHITE,"||\\~~~~~~~~~~~~~~~~\\")],
+                              0: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~LEFT~~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~HALL~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"|/~~~~~~~~~~~~~~~~/|\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~\\\\\\\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~\\\\\n"),
+(Afton.WHITE,"||\\~~~~~~~~~~~~~~~~\\")]}
 
-        self.right_hall_art = {"C": "~~~~~~~~~~~~[Y][U]~~\n\
-~~RIGHT~~[G]~[H][J]~\n\
-~~HALL~~~~~[B]{}[N]~\n\
-|\\~~~~~~~~~~~~~~~~\\|\n\
-||~~ /\\_/_\\_/\\ ~~~||\n\
-||~~/ __   __ \\~~~||\n\
-||~~| @@   @@ |~~~||\n\
-||~~|         |~~~||\n\
-||~~|   /_\\   |~~~||\n\
-||~~ \\  \\_/  / ~~~||\n\
-///~   -----   ~~~||\n\
-//~~~~~~~~~~~~~~~~||\n\
-/~~~~~~~~~~~~~~~~/||",
-                               "F": "~~~~~~~~~~~~[Y][U]~~\n\
-~~RIGHT~~[G]~[H][J]~\n\
-~~HALL~~~~~[B]{}[N]~\n\
-|\\~~0 0~~~~~~~~~~~\\|\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-///~~~~~~~~~~~~~~~||\n\
-//~~~~~~~~~~~~~~~~||\n\
-/~~~~~~~~~~~~~~~~/||",
-                               "CF": "~~~~~~~~~~~~[Y][U]~~\n\
-~~RIGHT~~[G]~[H][J]~\n\
-~~HALL~~~~~[B]{}[N]~\n\
-|\\~~0 0~~~~~~~~~~~\\|\n\
-||~~ /\\_/_\\_/\\ ~~~||\n\
-||~~/ __   __ \\~~~||\n\
-||~~| @@   @@ |~~~||\n\
-||~~|         |~~~||\n\
-||~~|   /_\\   |~~~||\n\
-||~~ \\  \\_/  / ~~~||\n\
-///~   -----   ~~~||\n\
-//~~~~~~~~~~~~~~~~||\n\
-/~~~~~~~~~~~~~~~~/||",
-                               0: "~~~~~~~~~~~~[Y][U]~~\n\
-~~RIGHT~~[G]~[H][J]~\n\
-~~HALL~~~~~[B]{}[N]~\n\
-|\\~~~~~~~~~~~~~~~~\\|\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-||~~~~~~~~~~~~~~~~||\n\
-///~~~~~~~~~~~~~~~||\n\
-//~~~~~~~~~~~~~~~~||\n\
-/~~~~~~~~~~~~~~~~/||"}
-        self.toilets_art = {0: "~~~~~~~~~~~~[Y][U]~~\n\
-~TOILETS~~~~~[H][J]~\n\
-~~~~~~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~ ______ ~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~",
-                            "F": "~~~~~~~~~~~~[Y][U]~~\n\
-~TOILETS~~~~~[H][J]~\n\
-~~~~~~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~ ______ ~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|  0 0 |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~",
-                            "CF": "~~~~~~~~~~~~[Y][U]~~\n\
-~TOILETS~~~~~[H][J]~\n\
-~~~~~~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~ _44_ ~~\n\
-~~ ______ ~~'&  &'~~\n\
-~~|      |~~' ^^ '~~\n\
-~~|  0 0 |~~' \\/ '~~\n\
-~~|      |~~'____'~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~",
-                            "C": "~~~~~~~~~~~~[Y][U]~~\n\
-~TOILETS~~~~~[H][J]~\n\
-~~~~~~~~~~~[B]{}[N]~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~~~~~~~~~\n\
-~~~~~~~~~~~~ _44_ ~~\n\
-~~ ______ ~~'&  &'~~\n\
-~~|      |~~' ^^ '~~\n\
-~~|      |~~' \\/ '~~\n\
-~~|      |~~'____'~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~\n\
-~~|      |~~~~~~~~~~"}
+        self.right_hall_art = {"C": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~RIGHT~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~HALL~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"|\\~~~~~~~~~~~~~~~~\\|\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW," /\\_/_\\_/\\ "),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"/ __   __ \\"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"| @@   @@ |"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"|         |"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"|   /_\\   |"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW," \\  \\_/  / "),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"///~"),(Afton.YELLOW,"   -----   "),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"//~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"/~~~~~~~~~~~~~~~~/||")],
+                               "F": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~RIGHT~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~HALL~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"|\\~~0 0~~~~~~~~~~~\\|\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"///~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"//~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"/~~~~~~~~~~~~~~~~/||")],
+                               "CF": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~RIGHT~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~HALL~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"|\\~~0 0~~~~~~~~~~~\\|\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW," /\\_/_\\_/\\ "),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"/ __   __ \\"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"| @@   @@ |"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"|         |"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW,"|   /_\\   |"),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"||~~"),(Afton.YELLOW," \\  \\_/  / "),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"///~"),(Afton.YELLOW,"   -----   "),(Afton.WHITE,"~~~||\n"),
+(Afton.WHITE,"//~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"/~~~~~~~~~~~~~~~~/||")],
+                               0: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~~RIGHT~~[G]~[H][J]~\n"),
+(Afton.WHITE,"~~HALL~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"|\\~~~~~~~~~~~~~~~~\\|\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"||~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"///~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"//~~~~~~~~~~~~~~~~||\n"),
+(Afton.WHITE,"/~~~~~~~~~~~~~~~~/||")]}
+        self.toilets_art = {0: [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~TOILETS~~~~~[H][J]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~ ______ ~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~")],
+                            "F": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~TOILETS~~~~~[H][J]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~ ______ ~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|  "),(Afton.RED,"0 0"),(Afton.WHITE," |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~")],
+                            "CF": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~TOILETS~~~~~[H][J]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~ ______ ~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|  "),(Afton.RED,"0 0"),(Afton.WHITE," |~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~")],
+                            "C": [
+(Afton.WHITE,"~~~~~~~~~~~~[Y][U]~~\n"),
+(Afton.WHITE,"~TOILETS~~~~~[H][J]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~[B]{}[N]~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~~~~~~~~~\n"),
+(Afton.WHITE,"~~~~~~~~~~~~"),(Afton.YELLOW," _44_ "),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~ ______ ~~"),(Afton.YELLOW,"'&  &'"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~"),(Afton.YELLOW,"' ^^ '"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~"),(Afton.YELLOW,"' \\/ '"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~"),(Afton.YELLOW,"'____'"),(Afton.WHITE,"~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~\n"),
+(Afton.WHITE,"~~|      |~~~~~~~~~~")]}

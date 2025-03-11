@@ -3,7 +3,7 @@
 # (COLOR, "string"), (COLOR2, "string2"), (BLACK, "\n")
 # ... (repeat for each line)
 # ]
-import Afton
+from src import Afton
 #Sorry, because of Afton, the arts are now imporssible to see at the first glance
 # Blame poor willie for this ;)
 
@@ -150,15 +150,15 @@ door_art = [ [
 (Afton.WHITE,"  .."),(Afton.GREEN,"1111111"),(Afton.WHITE,"..\n"),
 (Afton.WHITE,"  ...........") ], 
             [
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
-(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,".."),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
+(Afton.WHITE,"  .."),(Afton.GREEN,"-_-_-_-"),(Afton.WHITE,"..\n"),
 (Afton.WHITE,"  ...........")]
             ]
 
@@ -176,40 +176,40 @@ comsum_art = [[(Afton.WHITE,"......."),(Afton.RED,"[    ]"),(Afton.WHITE,"......
               [(Afton.WHITE,"......."),(Afton.GREEN,"[||| ]"),(Afton.WHITE,".......\n")],
               [(Afton.WHITE,"......."),(Afton.GREEN,"[||||]"),(Afton.WHITE,".......\n")]]
 
-clock_art = [[(Afton.WHITE,".......12:AM........\n",)]
-             [(Afton.WHITE,".......01:AM........\n",)]
-             [(Afton.WHITE,".......02:AM........\n",)]
-             [(Afton.WHITE,".......03:AM........\n",)]
-             [(Afton.WHITE,".......04:AM........\n",)]
-             [(Afton.WHITE,".......05:AM........\n",)]
+clock_art = [[(Afton.WHITE,".......12:AM........\n")],
+             [(Afton.WHITE,".......01:AM........\n")],
+             [(Afton.WHITE,".......02:AM........\n")],
+             [(Afton.WHITE,".......03:AM........\n")],
+             [(Afton.WHITE,".......04:AM........\n")],
+             [(Afton.WHITE,".......05:AM........\n")],
              [(Afton.WHITE,".GOOD..06:AM...JOB..\n")]]
 
 OFFICE_art = [
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"....."),(Afton.BLUE," __[]__9_ "),(Afton.WHITE,"....."),
-(Afton.WHITE,"....."),(Afton.BLUE,"||------||"),(Afton.WHITE,"....."),
-(Afton.WHITE,"....."),(Afton.BLUE,"||      ||"),(Afton.WHITE,"....."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"....................")]
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....."),(Afton.BLUE," __[]__9_ "),(Afton.WHITE,".....\n"),
+(Afton.WHITE,"....."),(Afton.BLUE,"||------||"),(Afton.WHITE,".....\n"),
+(Afton.WHITE,"....."),(Afton.BLUE,"||      ||"),(Afton.WHITE,".....\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n")]
 
 OFFICE_GF_art = [
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"..."),(Afton.YELLOW," ^¶¶^ "),(Afton.WHITE,"..........."),
-(Afton.WHITE,"..."),(Afton.YELLOW,"|#  #|"),(Afton.WHITE,"..........."),
-(Afton.WHITE,"...."),(Afton.YELLOW,"\\__/"),(Afton.WHITE,"............"),
-(Afton.WHITE,"."),(Afton.YELLOW,"♪./ & \\"),(Afton.WHITE,"............"),
-(Afton.WHITE,"."),(Afton.YELLOW,"\\|     |-\\"),(Afton.WHITE,"........."),
-(Afton.WHITE,".."),(Afton.YELLOW,"\\_"),(Afton.BLUE,"[ __[]__9_ "),(Afton.WHITE,"....."),
-(Afton.WHITE,"...."),(Afton.BLUE,"|||------||"),(Afton.WHITE,"....."),
-(Afton.WHITE,"....."),(Afton.BLUE,"||      ||"),(Afton.WHITE,"....."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"...................."),
-(Afton.WHITE,"....................")]
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"..."),(Afton.YELLOW," ^¶¶^ "),(Afton.WHITE,"...........\n"),
+(Afton.WHITE,"..."),(Afton.YELLOW,"|#  #|"),(Afton.WHITE,"...........\n"),
+(Afton.WHITE,"...."),(Afton.YELLOW,"\\__/"),(Afton.WHITE,"............\n"),
+(Afton.WHITE,"."),(Afton.YELLOW,"♪./ & \\"),(Afton.WHITE,"............\n"),
+(Afton.WHITE,"."),(Afton.YELLOW,"\\|     |-\\"),(Afton.WHITE,".........\n"),
+(Afton.WHITE,".."),(Afton.YELLOW,"\\_%"),(Afton.BLUE," __[]__9_ "),(Afton.WHITE,".....\n"),
+(Afton.WHITE,"....."),(Afton.BLUE,"||------||"),(Afton.WHITE,".....\n"),
+(Afton.WHITE,"....."),(Afton.BLUE,"||      ||"),(Afton.WHITE,".....\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n"),
+(Afton.WHITE,"....................\n")]

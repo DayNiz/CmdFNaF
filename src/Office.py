@@ -4,12 +4,15 @@ from pygame import mixer
 
 
 class Side:
-    def __init__(self):
+    def __init__(self, game):
         self.door: Door = Door()
         self.light: Light = Light()
+        self.game = game
 
     def show(self):
-        Afton.a_print(self.light.art, self.door.art)
+        self.game.afton.a_print(self.light.art)
+        self.game.afton.a_print(self.door.art)
+        self.game.afton.refresh_screen()
 
 
 class Door:
@@ -71,15 +74,18 @@ class Office:
     def __init__(self, side, game):
         self.game = game
         self.side = side
-        self.left: Side = Side()
-        self.right: Side = Side()
+        self.left: Side = Side(game)
+        self.right: Side = Side(game)
         self.desk_art = OFFICE_art
 
-    def show(self, clock, comsum, screen):
+    def show(self, clock, comsum):
         if self.side == 0:
             self.left.show()
         elif self.side == 1:
-            Afton.a_print(comsum_art[comsum], show_battery(round(self.game.batt_level)),
-                  clock_art[clock], self.desk_art)
+            self.game.afton.a_print(comsum_art[comsum])
+            self.game.afton.a_print(show_battery(round(self.game.batt_level)))
+            self.game.afton.a_print(clock_art[clock])
+            self.game.afton.a_print(self.desk_art)
+            self.game.afton.refresh_screen()
         elif self.side == 2:
             self.right.show()
